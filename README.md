@@ -21,8 +21,6 @@ Ten Tier 1 support tickets, diagnosed and resolved end-to-end in a live Microsof
 | 02 | [Distribution list membership](#ticket-02--distribution-list-not-receiving-mail) | Mail flow |
 | 03 | [Missing emails](#ticket-03--missing-emails) | Mail flow |
 
-All tickets were completed entirely through the browser (Exchange admin center and Outlook on the web) — no desktop Outlook client was used.
-
 ---
 
 ## Ticket 01 — Shared Mailbox Access Request
