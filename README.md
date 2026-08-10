@@ -13,7 +13,7 @@ Ten Tier 1 support tickets, diagnosed and resolved end-to-end in a live Microsof
 | **Distribution list** | Client Services (`clientservices@roodeeMSP.onmicrosoft.com`) |
 | **External test account** | A personal Gmail address, used to simulate a client emailing in from outside the organization |
 
-## Tickets
+## Tickets (In progress, 3/10 Completed)
 
 | # | Ticket | Area |
 |---|---|---|
