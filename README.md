@@ -1,14 +1,6 @@
-# Roodee MSP — M365 Exchange Online Help Desk Lab
+# RooDee — M365 Exchange Help Desk Lab
 
-A simulated MSP service desk built on a Microsoft 365 E5 trial tenant, resolving realistic client tickets across mailbox permissions, mail flow, and message delivery in Exchange Online. Each ticket follows a **reproduce → diagnose → fix → verify** workflow, documented with screenshots at every stage.
-
-## Tickets
-
-| # | Ticket | Area |
-|---|---|---|
-| 01 | [Shared mailbox access request](#ticket-01--shared-mailbox-access-request) | Permissions |
-| 02 | [Distribution list membership](#ticket-02--distribution-list-not-receiving-mail) | Mail flow |
-| 03 | [Missing emails](#ticket-03--missing-emails) | Mail flow |
+Ten Tier 1 support tickets diagnosed and resolved end-to-end in a live Microsoft 365 tenant. Each one mirrors a real service desk queue item (mailbox permissions, distribution list failures, missing mail), worked through the same reproduce → diagnose → fix → verify process a help desk tech would follow.
 
 ## Environment
 
@@ -20,6 +12,14 @@ A simulated MSP service desk built on a Microsoft 365 E5 trial tenant, resolving
 | **Shared mailbox** | Service Desk (`servicedesk@roodeeMSP.onmicrosoft.com`) |
 | **Distribution list** | Client Services (`clientservices@roodeeMSP.onmicrosoft.com`) |
 | **External test account** | A personal Gmail address, used to simulate a client emailing in from outside the organization |
+
+## Tickets
+
+| # | Ticket | Area |
+|---|---|---|
+| 01 | [Shared mailbox access request](#ticket-01--shared-mailbox-access-request) | Permissions |
+| 02 | [Distribution list membership](#ticket-02--distribution-list-not-receiving-mail) | Mail flow |
+| 03 | [Missing emails](#ticket-03--missing-emails) | Mail flow |
 
 All tickets were completed entirely through the browser (Exchange admin center and Outlook on the web) — no desktop Outlook client was used.
 
