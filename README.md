@@ -1,6 +1,6 @@
 # RooDee — M365 Exchange Help Desk Lab
 
-Ten Tier 1 support tickets diagnosed and resolved end-to-end in a live Microsoft 365 tenant. Each one mirrors a real service desk queue item (mailbox permissions, distribution list failures, missing mail), worked through the same reproduce → diagnose → fix → verify process a help desk tech would follow.
+Ten Tier 1 support tickets ,diagnosed and resolved end-to-end in a live Microsoft 365 tenant. Each one mirrors a real service desk queue item (mailbox permissions, distribution list failures, missing mail), worked through the same reproduce → diagnose → fix → verify process a help desk tech would follow.
 
 ## Environment
 
