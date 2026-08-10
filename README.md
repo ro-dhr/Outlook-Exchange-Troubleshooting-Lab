@@ -6,6 +6,7 @@ Ten Tier 1 support tickets, diagnosed and resolved end-to-end in a live Microsof
 
 | | |
 |---|---|
+| **Name** | `RoodeeMSP` |
 | **Tenant** | `roodeeMSP.onmicrosoft.com` (Office 365 E5 trial) |
 | **Admin tools used** | Microsoft 365 admin center, Exchange admin center (EAC), Outlook on the web |
 | **Test users** | John Stanley, Kenneth Green, Maria Garcia, Rooble Dahir (admin), Sandra Clark |
