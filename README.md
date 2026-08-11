@@ -1,6 +1,6 @@
 # Microsoft 365 / Outlook & Exchange Help Desk Lab
 
-Ten Tier 1 support tickets, diagnosed and resolved end-to-end in a live Microsoft 365 tenant. Built around a simulated MSP service desk environment; tenant, users, licensing, shared mailboxes, and distribution lists all provisioned from scratch. Each one mirrors a real service desk queue item (mailbox permissions, distribution list failures, missing mail), worked through the same reproduce → diagnose → fix → verify process a help desk tech would follow.
+Eight Tier 1 support tickets, diagnosed and resolved end-to-end in a live Microsoft 365 tenant. Built around a simulated MSP service desk environment; tenant, users, licensing, shared mailboxes, and distribution lists all provisioned from scratch. Each one mirrors a real service desk queue item (mailbox permissions, distribution list failures, missing mail), worked through the same reproduce → diagnose → fix → verify process a help desk tech would follow.
 
 ## Environment
 
@@ -14,7 +14,7 @@ Ten Tier 1 support tickets, diagnosed and resolved end-to-end in a live Microsof
 | **Distribution list** | Client Services (`clientservices@roodeeMSP.onmicrosoft.com`) |
 | **External test account** | A personal Gmail address, used to simulate a client emailing in from outside the organization |
 
-## Tickets (In progress, 4/10 Completed)
+## Tickets (In progress, 4/8 Completed)
 
 | # | Ticket | Area |
 |---|---|---|
