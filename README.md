@@ -23,9 +23,9 @@ Eight Tier 1 support tickets, diagnosed and resolved end-to-end in a live Micros
 | 03 | [Missing emails](#ticket-03--missing-emails) | Mail flow |
 | 04 | [New employee onboarding](#ticket-04--new-employee-onboarding) | Provisioning |
 | 05 | [Calendar sharing permissions](#ticket-05--calendar-sharing-permissions) | Permissions |
-| 06 | [Quarantined message release](#ticket-06--quarantined-message-release) | Mail flow / Security |
+| 06 | [Quarantined message release](#ticket-06--quarantined-message-release) | Security |
 | 07 | [Temporary mail forwarding](#ticket-07--temporary-mail-forwarding) | Mail flow |
-| 08 | [Automatic replies not reaching external senders](#ticket-08--automatic-replies-not-reaching-external-senders) | Mail flow |
+| 08 | [Automatic replies not reaching external senders](#ticket-08--automatic-replies-not-reaching-external-senders) | Client |
 
 ---
 
