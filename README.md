@@ -5,6 +5,7 @@ Eight Tier 1 support tickets, diagnosed and resolved end-to-end in a live Micros
 ## Environment
 
 | | |
+|---|---|
 | **Name** | `RoodeeMSP` |
 | **Tenant** | `roodeeMSP.onmicrosoft.com` (Office 365 E5 trial) |
 | **Admin tools used** | Microsoft 365 admin center, Exchange admin center (EAC), Entra admin center, Outlook on the web |
