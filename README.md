@@ -4,7 +4,7 @@ Eight Tier 1 support tickets, diagnosed and resolved end-to-end in a live Micros
 
 ## Environment
 
-
+| | |
 |---|---|
 | **Name** | `RoodeeMSP` |
 | **Tenant** | `roodeeMSP.onmicrosoft.com` (Office 365 E5 trial) |
