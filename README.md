@@ -182,7 +182,7 @@ Verified by sending a test email as Sales to Kenneth Green.
 ![Kenneth receives the email from Sales](screenshots/ticket06-07-kenneth-receives-verification.png)
 
 ### Add to Client Services distribution list
-Added Jordan to the Client Services list so he receives client-facing mail alongside the rest of the team.
+Added Jordan to the Client Services list so he receives client-facing mail alongside Sandra.
 
 ![Added to Client Services](screenshots/ticket06-08-added-to-clientservices.png)
 
