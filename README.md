@@ -70,7 +70,7 @@ John sent a test email from the Service Desk mailbox to Kenneth Green. The messa
 ![Sending as Service Desk](screenshots/ticket01-10-sending-as-servicedesk.png)
 ![Kenneth Green receives the email](screenshots/ticket01-11-kgreen-receives-verification.png)
 
-**Root cause:** No delegation permissions had been assigned to the mailbox. **Resolution:** Full Access and Send As are separate permissions and both needed to be granted individually to fully resolve the request.
+**Root cause:** No delegation permissions had been assigned to the mailbox. **Resolution:** Full Access and Send As are separate permissions, and both needed to be granted individually to fully resolve the request.
 
 ---
 
@@ -83,13 +83,16 @@ The Client Services distribution list had zero members. An external test (from G
 
 ![Baseline — empty distribution list](screenshots/ticket03-00-baseline-empty-dl.png)
 
-External Client Sends
+External Client sends an email
 
 ![External sender test — fails](screenshots/ticket03-01-external-sends-fails.png)
 
-Nothing ends up being received
+Internal member sends an email
 
 ![Internal sender test — fails](screenshots/ticket03-02-internal-sends-fails.png)
+
+Sandra receives nothing
+
 ![Sandra's inbox — nothing received](screenshots/ticket03-03-sandra-no-receipt.png)
 
 ### Diagnose
