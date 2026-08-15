@@ -83,15 +83,15 @@ The Client Services distribution list had zero members. An external test (from G
 
 ![Baseline — empty distribution list](screenshots/ticket03-00-baseline-empty-dl.png)
 
-External Client sends an email
+External Client sends an email to client services
 
 ![External sender test — fails](screenshots/ticket03-01-external-sends-fails.png)
 
-Internal member sends an email
+Internal member sends an email to client services
 
 ![Internal sender test — fails](screenshots/ticket03-02-internal-sends-fails.png)
 
-Sandra receives nothing
+Sandra is supposed to receive two emails, but is receiving nothing.
 
 ![Sandra's inbox — nothing received](screenshots/ticket03-03-sandra-no-receipt.png)
 
