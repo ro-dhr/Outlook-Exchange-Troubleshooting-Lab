@@ -102,6 +102,9 @@ Checked the distribution list's **Membership** tab in the Exchange admin center 
 Added Sandra Clark as a member of the Client Services list.
 
 ![Adding Sandra Clark](screenshots/ticket03-04-adding-sandra.png)
+
+Sandra is now added and should receive emails now.
+
 ![Confirmation](screenshots/ticket03-05-sandra-added-confirmation.png)
 
 Retested with an internal sender — mail now reached Sandra successfully, confirming membership was the first issue.
