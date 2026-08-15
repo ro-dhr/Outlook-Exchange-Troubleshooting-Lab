@@ -82,7 +82,13 @@ John sent a test email from the Service Desk mailbox to Kenneth Green. The messa
 The Client Services distribution list had zero members. An external test (from Gmail) and an internal test (from John Stanley) were both sent to `clientservices@roodeeMSP.onmicrosoft.com` — neither reached Sandra Clark, who was expected to be receiving list mail.
 
 ![Baseline — empty distribution list](screenshots/ticket03-00-baseline-empty-dl.png)
+
+External Client Sends
+
 ![External sender test — fails](screenshots/ticket03-01-external-sends-fails.png)
+
+Nothing ends up being received
+
 ![Internal sender test — fails](screenshots/ticket03-02-internal-sends-fails.png)
 ![Sandra's inbox — nothing received](screenshots/ticket03-03-sandra-no-receipt.png)
 
