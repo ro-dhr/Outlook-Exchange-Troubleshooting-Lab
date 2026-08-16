@@ -218,8 +218,8 @@ On his next sign-in, Jordan was prompted to register for MFA and set up Microsof
 ![MFA setup complete](screenshots/ticket06-15-mfa-setup-complete.png)
 ![Signed in successfully after MFA setup](screenshots/ticket06-16-signed-in-post-mfa.png)
 
-### Extra: Mailbox Storage Adjustment
-As an additional provisioning step, Jordan's mailbox storage quota was reduced from the default to 1024 GB, then to 200 GB.
+### Mailbox Storage Adjustment
+Jordan’s mailbox quota was reduced from the default 1,024 GB to 200 GB because of his role.
 
 ![Changing storage limit](screenshots/ticket06-17-storage-limit-change.png)
 ![Storage confirmed at 200GB](screenshots/ticket06-18-storage-confirmed-200gb.png)
