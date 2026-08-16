@@ -407,7 +407,7 @@ Uploaded a test document ("RoodeeMSP Q3 Budget Summary") to the company's ShareP
 ![SharePoint site](screenshots/ticket09-00-sharepoint-site.png)
 ![Document uploaded](screenshots/ticket09-01-document-uploaded.png)
 
-Opening the link in an incognito window — simulating an outside recipient — landed directly on the document with full edit access and no sign-in required.
+Opening the link in an incognito window simulating an outside recipient.The client could edit and read the document with no login required.
 
 ![Outsider opens and edits the document without signing in](screenshots/ticket09-02-outsider-access-no-signin.png)
 
@@ -427,7 +427,7 @@ Confirmed an internal, signed-in user could still open the document normally.
 
 ![Internal user retains access](screenshots/ticket09-06-internal-user-can-access.png)
 
-Re-tested the same link in an incognito window — this time it correctly denied access rather than opening the document.
+Testing if anyone outside the company can access the document. This time it correctly denied access rather than opening the document.
 
 ![Outsider now denied access](screenshots/ticket09-07-outsider-access-denied.png)
 
@@ -441,31 +441,41 @@ Re-tested the same link in an incognito window — this time it correctly denied
 
 ### Part 1: Build the Policy
 
-Created a **Data Loss Prevention (DLP)** policy based on the PCI DSS template, detecting Credit Card Number and Canada Bank Account Number content, scoped to Exchange email only and configured to block delivery whenever that content is shared with people outside the organization.
+Created a **Data Loss Prevention (DLP)** policy based on the PCI DSS template.
 
 ![Naming the DLP policy](screenshots/ticket10-00-dlp-policy-name.png)
+
+Applying the policy only to Exchange Email as requested.
+
 ![Scoped to Exchange email only](screenshots/ticket10-01-scoped-to-exchange.png)
+
+Configured protection actions to show users when their email goes against policy and also sends an incident report to the global admin email. Also configured enforcement capabilities to restrict access or encrypt
+
 ![Protection actions configured](screenshots/ticket10-02-protection-actions.png)
+
+Quick review of the policy.
+
 ![Policy review before creation](screenshots/ticket10-03-policy-review.png)
 
-Policy created and enabled tenant-wide, as requested.
+The policy is now created and enabled tenant-wide, as requested. Note: In the next part, I'll show that the policy works.
 
 ### Part 2: Jordan's Ticket
 
-Shortly after the policy went live, Jordan Miller reported he could no longer email a client the payment details for a processed invoice — something he does routinely as part of his role.
+Shortly after the policy went live, Jordan Miller reported he could no longer email a client the payment details for a processed invoice, something he does routinely as part of his role.
 
 **Reproduce**
 
-Sent a test email as Jordan Miller to an external client address, including realistic payment details (card number, expiration, CVV, cardholder name) — a bare number alone wasn't enough to reliably trigger detection; the surrounding context mattered.
-
-The message was flagged at compose time with a policy tip before it could even be sent.
+Sent a test email as Jordan Miller to an external client address, including realistic payment details (card number, expiration, CVV, cardholder name). You can already see the policy tip at the top.
 
 ![Policy tip warning at compose time](screenshots/ticket10-04-reproduce-policy-tip-blocked.png)
+
+The message was blocked from being sent due to the policy not allowing financial information.
+
 ![Send blocked dialog](screenshots/ticket10-05-send-blocked-dialog.png)
 
 **Diagnose**
 
-Ran a message trace on the blocked send attempt, confirming the message was received by Exchange Online but never delivered — returned with error `550 5.7.171 Delivery not authorized, message refused`, tied directly to the new DLP policy. Since the policy was working exactly as leadership requested — blocking financial data leaving the organization — the real question wasn't whether it was broken, but whether Jordan's specific, legitimate use case needed to be accounted for.
+Ran a message trace on the blocked send attempt, confirming the message was received by Exchange Online but never delivered — returned with error `550 5.7.171 Delivery not authorized, message refused`, tied directly to the new DLP policy. Since the policy was working exactly as leadership requested, the real question wasn't whether it was broken, but whether Jordan's specific, legitimate use case needed to be accounted for.
 
 ![Message trace confirming the block](screenshots/ticket10-06-messagetrace-not-delivered.png)
 
@@ -488,34 +498,6 @@ Sent the same content to a **different** external address, not covered by the ex
 **Root cause:** The policy was functioning correctly and exactly as requested — the gap was that it had no awareness of Jordan's legitimate, recurring business need until it actually collided with one. **Resolution:** A recipient-scoped exception satisfied both sides — leadership's requirement stayed enforced everywhere else, and Jordan's specific, verified use case was unblocked without opening a broader hole in the policy.
 
 ---
-
-## Notes on Tooling
-
-All fixes in this lab were made through the Exchange admin center, Microsoft 365 admin center, and Entra admin center GUIs. In a production MSP environment, the same changes are commonly scripted via PowerShell for speed and consistency across multiple tenants — for example:
-
-```powershell
-# Ticket 01 equivalent
-Add-MailboxPermission -Identity "Service Desk" -User jstanley -AccessRights FullAccess
-Add-RecipientPermission -Identity "Service Desk" -Trustee jstanley -AccessRights SendAs
-
-# Ticket 02 equivalent
-Add-DistributionGroupMember -Identity "Client Services" -Member sclark
-Set-DistributionGroup -Identity "Client Services" -RequireSenderAuthenticationEnabled $false
-
-# Ticket 04 equivalent
-New-Mailbox -Shared -Name "Sales" -DisplayName "Sales"
-Add-MailboxPermission -Identity "Sales" -User jmiller -AccessRights FullAccess
-Add-RecipientPermission -Identity "Sales" -Trustee jmiller -AccessRights SendAs
-Add-DistributionGroupMember -Identity "Client Services" -Member jmiller
-Set-Mailbox -Identity jmiller -ProhibitSendReceiveQuota 200GB
-
-# Ticket 09 equivalent — restricting a SharePoint sharing link to the organization
-Set-PnPFileSharingLink -Identity "RoodeeMSP Q3 Budget Summary.docx" -Type OrganizationView
-
-# Ticket 10 equivalent — DLP policy exception for a specific recipient (illustrative)
-New-DlpComplianceRule -Name "Block PCI Data - Exception" -Policy "Block PCI Data in emails" `
-  -ExceptIfRecipientDomainIs "trustedvendor.com" -BlockAccess $false
-```
 
 ## Lab Status
 
