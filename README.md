@@ -78,7 +78,7 @@ John sent a test email from the Service Desk mailbox to Kenneth Green. The messa
 
 ## Ticket 02 — Distribution List Not Receiving Mail
 
-**Scenario:** A client reports that emails sent to the Client Services team aren't reaching anyone.
+**Scenario:** An internal member isn't receiving emails sent to the client services team from both internal and external members.
 
 ### Reproduce
 The Client Services distribution list had zero members. An external test (from Gmail) and an internal test (from John Stanley) were both sent to `clientservices@roodeeMSP.onmicrosoft.com` — neither reached Sandra Clark, who was expected to be receiving list mail.
@@ -98,23 +98,25 @@ Sandra is supposed to receive two emails, but is receiving nothing.
 ![Sandra's inbox — nothing received](screenshots/ticket03-03-sandra-no-receipt.png)
 
 ### Diagnose
-Checked the distribution list's **Membership** tab in the Exchange admin center — confirmed it had 0 members, so there was nowhere for incoming mail to be delivered.
+The first place I checked was the distribution list's **Membership** tab in the Exchange admin center and I found the issue: it had 0 members. If the distribution list has 0 members that means it isn't redistributing the emails to anyone!
 
 ### Fix — Part 1: Membership
 Added Sandra Clark as a member of the Client Services list.
 
 ![Adding Sandra Clark](screenshots/ticket03-04-adding-sandra.png)
 
-Sandra is now added and should receive emails now.
+Sandra is now added and should receive emails from all members.
 
 ![Confirmation](screenshots/ticket03-05-sandra-added-confirmation.png)
 
-Retested with an internal sender — mail now reached Sandra successfully, confirming membership was the first issue.
+Retested with an internal sender, and the mail now reached Sandra successfully, confirming membership was the issue!
 
 ![Internal delivery now works](screenshots/ticket03-06-internal-now-works.png)
 
 ### Fix — Part 2: External Delivery
-The external (Gmail) test still failed after membership was fixed. Checking the list's **Delivery management** settings under Sender options showed it was restricted to internal senders only — the default setting for a new distribution list.
+**SCENARIO:** An external client is still reporting that their emails aren't being received properly.
+
+Went back to check the list's **Delivery management** settings under Sender options showed it was restricted to internal senders only, which was the default setting for a new distribution list.
 
 ![Delivery management restricted to internal only](screenshots/ticket03-07-delivery-management-internal-only.png)
 
@@ -128,7 +130,7 @@ Resent the test message from Gmail. It was delivered to Sandra's inbox successfu
 ![External retest sent](screenshots/ticket03-09-external-retest-sent.png)
 ![External delivery verified](screenshots/ticket03-10-external-verification.png)
 
-**Root cause:** Two separate issues — the list had no members, and it was also configured to reject external senders by default. **Resolution:** Both had to be identified and fixed independently; fixing only one would have left the client's original complaint unresolved.
+**Root cause:** Two separate issues. The list had no members, and it was also configured to reject external senders by default. **Resolution:** Both had to be identified and fixed independently; fixing only one would have left the client's original complaint unresolved.
 
 ---
 
@@ -155,12 +157,14 @@ Checked Maria's Deleted Items folder and found the message there.
 
 ![Message found in Deleted Items](screenshots/ticket04-05-found-in-deleted-items.png)
 
-Reviewing her inbox rules revealed a rule silently moving messages from that sender straight to Deleted Items.
+Emails shouldn't be immediately put in the Deleted Items folder when sent. At first I thought it was a policy/spam issue, but that wouldn't be the case because it would've been in the junk folder or quarantined. That narrows it down to an inbox rule placed on her account.
+
+Reviewing her inbox rules, it showed the rule. Moving messages from that sender straight to Deleted Items.
 
 ![Culprit rule identified](screenshots/ticket04-06-culprit-rule-found.png)
 
 ### Fix
-Disabled the rule.
+Disabled the rule. Note: There could be legitimate use for the rule, so instead of deleting it, disabling it is safe.
 
 ![Rule disabled](screenshots/ticket04-07-rule-disabled.png)
 
@@ -216,6 +220,9 @@ On his next sign-in, Jordan was prompted to register for MFA and set up Microsof
 ![MFA registration prompt](screenshots/ticket06-13-mfa-registration-prompt.png)
 ![Authenticator QR code](screenshots/ticket06-14-mfa-qr-code.png)
 ![MFA setup complete](screenshots/ticket06-15-mfa-setup-complete.png)
+
+MFA is set up and completed.
+
 ![Signed in successfully after MFA setup](screenshots/ticket06-16-signed-in-post-mfa.png)
 
 ### Mailbox Storage Adjustment
@@ -399,7 +406,7 @@ The external sender received the automatic reply this time.
 
 ## Ticket 09 — SharePoint External Sharing Misconfiguration
 
-**Scenario:** A client reports being able to open and edit a confidential internal document just from a forwarded link — without ever signing in. This should have required specific permission.
+**Scenario:** A client reports being able to open and edit a confidential internal document just from a forwarded link without ever signing in. 
 
 ### Reproduce
 Uploaded a test document ("RoodeeMSP Q3 Budget Summary") to the company's SharePoint Documents library and generated a sharing link.
@@ -407,7 +414,7 @@ Uploaded a test document ("RoodeeMSP Q3 Budget Summary") to the company's ShareP
 ![SharePoint site](screenshots/ticket09-00-sharepoint-site.png)
 ![Document uploaded](screenshots/ticket09-01-document-uploaded.png)
 
-Opening the link in an incognito window simulating an outside recipient.The client could edit and read the document with no login required.
+Opening the link in an incognito window simulating an outside recipient. The client could edit and read the document with no login required.
 
 ![Outsider opens and edits the document without signing in](screenshots/ticket09-02-outsider-access-no-signin.png)
 
@@ -417,7 +424,7 @@ Checked the document's sharing status via **Manage access** in SharePoint, confi
 ![Manage access panel](screenshots/ticket09-03-manage-access.png)
 
 ### Fix
-Removed the existing overly-permissive link entirely, then created a new link scoped to **"People in [organization]"** — requiring an authenticated organization account rather than allowing anonymous access.
+Removed the existing overly-permissive link entirely, then created a new link scoped to **"People in [organization]"** — requiring an authenticated organization account rather than allowing anonymous access. NOTE: For even better security measures, you can even assign it to a specific individual and modify their level of access (Read, Edit, etc).
 
 ![Stopping the existing broad share](screenshots/ticket09-04-stop-sharing.png)
 ![New link restricted to people within the organization](screenshots/ticket09-05-restricted-to-org.png)
@@ -437,7 +444,7 @@ Testing if anyone outside the company can access the document. This time it corr
 
 ## Ticket 10 — DLP Policy Blocking Legitimate Email
 
-**Scenario:** Company leadership requests a policy to prevent financial information — credit card and bank account numbers — from being sent to anyone outside the organization, following a general push to tighten data handling practices.
+**Scenario:** Company leadership requests a policy to prevent financial information (credit card and bank account numbers) from being sent to anyone outside the organization, following a general push to tighten data handling practices.
 
 ### Part 1: Build the Policy
 
@@ -449,7 +456,7 @@ Applying the policy only to Exchange Email as requested.
 
 ![Scoped to Exchange email only](screenshots/ticket10-01-scoped-to-exchange.png)
 
-Configured protection actions to show users when their email goes against policy and also sends an incident report to the global admin email. Also configured enforcement capabilities to restrict access or encrypt
+Configured protection actions to show users when their email goes against policy and also sends an incident report to the global admin email for monitoring purposes. Also configured enforcement capabilities to restrict access or encrypt.
 
 ![Protection actions configured](screenshots/ticket10-02-protection-actions.png)
 
@@ -457,7 +464,7 @@ Quick review of the policy.
 
 ![Policy review before creation](screenshots/ticket10-03-policy-review.png)
 
-The policy is now created and enabled tenant-wide, as requested. Note: In the next part, I'll show that the policy works.
+The policy is now created and enabled tenant-wide, as requested. NOTE: In the next part, I'll show that the policy works.
 
 ### Part 2: Jordan's Ticket
 
@@ -469,7 +476,7 @@ Sent a test email as Jordan Miller to an external client address, including real
 
 ![Policy tip warning at compose time](screenshots/ticket10-04-reproduce-policy-tip-blocked.png)
 
-The message was blocked from being sent due to the policy not allowing financial information.
+The message was blocked from being sent due to the policy not allowing financial information (Shows the policy works).
 
 ![Send blocked dialog](screenshots/ticket10-05-send-blocked-dialog.png)
 
